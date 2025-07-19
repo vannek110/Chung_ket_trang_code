@@ -1,13 +1,214 @@
+/* style.css */
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #333; /* Fallback background color */
+    overflow: hidden; /* Important to hide overflow during transition */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+    background-color: #fff; /* Main form background */
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px; /* Total width */
+    max-width: 100%;
+    min-height: 480px; /* Minimum height */
+    display: flex; /* Use flexbox to arrange panels */
+}
+
+/* Video Background */
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure video covers the entire area */
+    z-index: 0; /* Place below other content */
+}
+
+.form-panel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: transform 0.6s ease-in-out; /* Transition effect */
+    width: 200%; /* Total width for both panels (100% for each) */
+    display: flex;
+}
+
+.form-panel {
+    flex: 1; /* Each panel takes 50% of form-panel-container */
+    display: flex;
+    flex-direction: column; /* Changed to column for better alignment of logo/form */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 50px;
+    background-color: #fff; /* White background for the form */
+    box-sizing: border-box; /* Include padding in width */
+    position: relative; /* For z-index if needed */
+    z-index: 2; /* Ensure it's above the video */
+}
+
+/* Form inputs and buttons */
+.form-panel form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.form-panel input {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.form-panel button {
+    border-radius: 20px;
+    border: 1px solid #5fb3b3; /* Teal button color */
+    background-color: #5fb3b3;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-panel button:active {
+    transform: scale(0.95);
+}
+
+.form-panel button:focus {
+    outline: none;
+}
+
+.form-panel .options {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.form-panel .options a {
+    color: #333;
+    text-decoration: none;
+}
+
+.form-panel .social-login {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.form-panel .social-login a {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+}
+.form-panel .social-login img {
+    width: 20px; /* Social icon size */
+    height: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Overlay Panel (Contains welcome message and toggle buttons) */
+.overlay-panel {
+    position: absolute;
+    top: 0;
+    left: 50%; /* Initially on the right half */
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 1; /* Place below form-panels for effect */
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent overlay for readability */
+    color: #fff;
+    display: flex;
+}
+
+.overlay-panel .overlay-left,
+.overlay-panel .overlay-right {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel .overlay-right {
+    transform: translateX(0); /* Initially visible on the right */
+}
+
+.overlay-panel .overlay-left {
+    transform: translateX(-100%); /* Initially hidden on the left */
+}
+
+.overlay-panel h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.overlay-panel p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+}
+
+.overlay-panel button.ghost {
+    background-color: transparent;
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+}
+
+/* Classes for transition states */
+.container.right-panel-active .form-panel-container {
+    transform: translateX(-50%); /* Shift left by 50% to show register panel */
+}
+
+.container.right-panel-active .overlay-panel {
+    transform: translateX(-100%); /* Shift left by 100% to show overlay-left */
+}
+
+.container.right-panel-active .overlay-panel .overlay-left {
+    transform: translateX(0); /* Show overlay-left */
+}
+
+.container.right-panel-active .overlay-panel .overlay-right {
+    transform: translateX(100%); /* Hide overlay-right */
 }
