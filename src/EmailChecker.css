@@ -1,0 +1,193 @@
+/* src/EmailChecker.css */
+.email-checker-container {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.email-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: calc(100% - 20px); /* Adjust for padding */
+  padding: 12px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng thể */
+}
+
+textarea {
+  resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
+  min-height: 80px;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+  color: #aaa;
+}
+
+/* Style cho checkbox group */
+.form-group.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa checkbox và label */
+    margin-bottom: 15px;
+}
+
+.form-group.checkbox-group input[type="checkbox"] {
+    width: auto; /* Để checkbox không bị kéo dài */
+    margin: 0; /* Bỏ margin mặc định */
+    transform: scale(1.3); /* Phóng to checkbox một chút */
+    cursor: pointer;
+}
+
+.form-group.checkbox-group label {
+    margin-bottom: 0; /* Bỏ margin dưới cho label */
+    font-weight: normal; /* Giảm độ đậm của label checkbox */
+    cursor: pointer;
+}
+
+
+.check-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.check-button:hover {
+  background-color: #0056b3;
+}
+
+.check-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.loading-message {
+  margin-top: 20px;
+  font-style: italic;
+  color: #666;
+}
+
+/* Kết quả phân loại */
+.result-box {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.result-box h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.result-box p {
+  margin-bottom: 10px;
+}
+
+.classification-text {
+  font-weight: bold;
+}
+
+/* Các màu sắc cho phân loại */
+/* Category ID: 0 (An toàn) -> an-toan */
+.result-box.an-toan {
+  background-color: #e6ffe6; /* Light green */
+  border: 1px solid #4CAF50;
+  color: #388e3c;
+}
+
+/* Category ID: 1 (Nghi ngờ) -> nghi-ngo */
+.result-box.nghi-ngo {
+  background-color: #fffde7; /* Light yellow */
+  border: 1px solid #FFC107;
+  color: #FFA000;
+}
+
+/* Category ID: 2 (Spam) -> spam */
+.result-box.spam {
+  background-color: #fff3e0; /* Light orange */
+  border: 1px solid #ff9800;
+  color: #ef6c00;
+}
+
+/* Category ID: 3 (Giả mạo / Phishing) -> gia-mao */
+.result-box.gia-mao {
+  background-color: #fce4ec; /* Light pink/red */
+  border: 1px solid #d81b60;
+  color: #c2185b;
+}
+
+/* Class cho lỗi (nếu backend trả về lỗi hoặc frontend gặp sự cố) */
+.result-box.dangerous { /* Có thể dùng cho cả lỗi hệ thống */
+  background-color: #ffebee; /* Light red */
+  border: 1px solid #F44336;
+  color: #D32F2F;
+  font-weight: bold;
+}
+
+.result-box.warning { /* Nếu bạn muốn một trạng thái cảnh báo chung */
+  background-color: #ffe0b2; /* Light orange */
+  border: 1px solid #FF9800;
+  color: #F57C00;
+}
+
+
+/* Style cho phần chi tiết kết quả (confidence, level, indicators) */
+.classification-details {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #ccc;
+  font-size: 15px;
+  text-align: left;
+}
+
+.classification-details ul {
+  list-style-type: disc; /* Dấu chấm tròn */
+  margin-left: 20px; /* Lùi vào một chút */
+  padding-left: 0;
+}
+
+.classification-details ul li {
+  margin-bottom: 5px;
+}
